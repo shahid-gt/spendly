@@ -1,0 +1,276 @@
+/* ================================================================== */
+/* landing.css — Hero section styles for Spendly landing page         */
+/* Scope: .hero-v2 and all children. Does not touch global styles.    */
+/* ================================================================== */
+
+/* ------------------------------------------------------------------ */
+/* Hero wrapper                                                        */
+/* ------------------------------------------------------------------ */
+
+.hero-v2 {
+    padding: 5rem 2rem 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+/* ------------------------------------------------------------------ */
+/* Badge                                                               */
+/* ------------------------------------------------------------------ */
+
+.hero-v2__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    background: #d7f0e3;
+    color: #1a6640;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 0.4rem 1.1rem;
+    border-radius: 999px;
+    border: 1px solid #b6e3cc;
+    margin-bottom: 2rem;
+    letter-spacing: 0.01em;
+}
+
+.hero-v2__badge-dot {
+    width: 7px;
+    height: 7px;
+    background: #1a9c55;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+/* ------------------------------------------------------------------ */
+/* Headline                                                            */
+/* ------------------------------------------------------------------ */
+
+.hero-v2__title {
+    font-family: var(--font-body);
+    font-size: clamp(2.6rem, 6vw, 4.2rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: #0f0f0f;
+    margin-bottom: 0;
+}
+
+.hero-v2__title-green {
+    display: block;
+    color: #1a9c55;
+    font-family: var(--font-body);
+    font-weight: 800;
+}
+
+/* ------------------------------------------------------------------ */
+/* Subtitle                                                            */
+/* ------------------------------------------------------------------ */
+
+.hero-v2__subtitle {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    color: #6b6b6b;
+    line-height: 1.65;
+    max-width: 520px;
+    margin: 1.5rem auto 2.25rem;
+}
+
+/* ------------------------------------------------------------------ */
+/* CTA buttons                                                         */
+/* ------------------------------------------------------------------ */
+
+.hero-v2__actions {
+    display: flex;
+    gap: 0.85rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 3.5rem;
+}
+
+.hero-v2__btn {
+    display: inline-block;
+    background: #0f0f0f;
+    color: #ffffff;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.85rem 2rem;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    letter-spacing: -0.01em;
+}
+
+.hero-v2__btn:hover {
+    background: #1a9c55;
+    transform: translateY(-1px);
+}
+
+/* ------------------------------------------------------------------ */
+/* Browser mockup frame                                                */
+/* ------------------------------------------------------------------ */
+
+.hero-v2__mockup {
+    width: 100%;
+    max-width: 780px;
+    background: #f2f2f0;
+    border: 1px solid #dddbd6;
+    border-radius: 16px;
+    padding: 1.25rem 1.5rem 1.5rem;
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.08);
+}
+
+/* Traffic-light dots */
+.hero-v2__traffic-lights {
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+    margin-bottom: 1.25rem;
+}
+
+.hero-v2__tl {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.hero-v2__tl--red   { background: #ff5f57; }
+.hero-v2__tl--amber { background: #febc2e; }
+.hero-v2__tl--green { background: #28c840; }
+
+/* ------------------------------------------------------------------ */
+/* Stat tiles inside mockup                                            */
+/* ------------------------------------------------------------------ */
+
+.hero-v2__stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.85rem;
+    margin-bottom: 0.85rem;
+}
+
+.hero-v2__stat-tile {
+    background: #ffffff;
+    border: 1px solid #e4e1da;
+    border-radius: 10px;
+    padding: 1rem 1.15rem;
+    text-align: left;
+}
+
+.hero-v2__stat-label {
+    font-size: 0.78rem;
+    color: #9a9a9a;
+    font-weight: 400;
+    margin-bottom: 0.3rem;
+    font-family: var(--font-body);
+}
+
+.hero-v2__stat-value {
+    font-family: var(--font-body);
+    font-size: 1.55rem;
+    font-weight: 700;
+    color: #0f0f0f;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+}
+
+.hero-v2__stat-sub {
+    font-size: 0.78rem;
+    font-weight: 500;
+    font-family: var(--font-body);
+}
+
+.hero-v2__stat-sub--red   { color: #e03e2d; }
+.hero-v2__stat-sub--green { color: #1a9c55; }
+.hero-v2__stat-sub--muted { color: #9a9a9a; }
+
+/* ------------------------------------------------------------------ */
+/* Bar chart inside mockup                                             */
+/* ------------------------------------------------------------------ */
+
+.hero-v2__chart {
+    background: #ffffff;
+    border: 1px solid #e4e1da;
+    border-radius: 10px;
+    padding: 1.1rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.hero-v2__chart-row {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    align-items: center;
+    gap: 0.85rem;
+}
+
+.hero-v2__chart-label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #3d3d3d;
+    font-family: var(--font-body);
+    text-align: left;
+}
+
+.hero-v2__chart-track {
+    height: 10px;
+    background: #e8e6e1;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.hero-v2__chart-bar {
+    height: 100%;
+    border-radius: 999px;
+}
+
+.hero-v2__chart-bar--food   { background: #f5a623; width: 75%; }
+.hero-v2__chart-bar--travel { background: #4a90e2; width: 50%; }
+.hero-v2__chart-bar--bills  { background: #9b59b6; width: 38%; }
+
+/* ------------------------------------------------------------------ */
+/* Responsive                                                          */
+/* ------------------------------------------------------------------ */
+
+@media (max-width: 640px) {
+    .hero-v2 {
+        padding: 3rem 1rem 2rem;
+    }
+
+    .hero-v2__title {
+        font-size: clamp(2rem, 8vw, 2.8rem);
+    }
+
+    .hero-v2__stats {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-v2__btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .hero-v2__actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-v2__mockup {
+        padding: 1rem;
+    }
+
+    .hero-v2__stat-value {
+        font-size: 1.25rem;
+    }
+}
