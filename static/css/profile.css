@@ -1,0 +1,253 @@
+/* ------------------------------------------------------------------ */
+/* Profile Page — Layout                                                */
+/* ------------------------------------------------------------------ */
+
+.profile-page {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 3rem 2rem 5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+/* ------------------------------------------------------------------ */
+/* Page Header                                                          */
+/* ------------------------------------------------------------------ */
+
+.profile-header {
+    padding-bottom: 0.25rem;
+}
+
+.profile-header__greeting {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+    line-height: 1.15;
+}
+
+.profile-header__tagline {
+    font-size: 1rem;
+    color: var(--ink-muted);
+    line-height: 1.5;
+}
+
+/* ------------------------------------------------------------------ */
+/* Section Wrapper                                                      */
+/* ------------------------------------------------------------------ */
+
+.profile-section {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.profile-section__title {
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-muted);
+    margin-bottom: 0.875rem;
+}
+
+/* ------------------------------------------------------------------ */
+/* Account Info Card                                                    */
+/* ------------------------------------------------------------------ */
+
+.account-card {
+    background: var(--paper-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.account-card__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-soft);
+    transition: background 0.15s ease;
+}
+
+.account-card__row:last-child {
+    border-bottom: none;
+}
+
+.account-card__row:hover {
+    background: var(--paper);
+}
+
+.account-card__label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--ink-muted);
+}
+
+.account-card__value {
+    font-size: 0.95rem;
+    color: var(--ink);
+    font-weight: 400;
+}
+
+/* ------------------------------------------------------------------ */
+/* Stat Grid + Cards                                                    */
+/* ------------------------------------------------------------------ */
+
+.stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.stat-card {
+    background: var(--paper-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.stat-card:hover {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+}
+
+.stat-card__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.stat-card__label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--ink-muted);
+}
+
+.stat-card__icon {
+    width: 16px;
+    height: 16px;
+    color: var(--ink-faint);
+    flex-shrink: 0;
+}
+
+.stat-card__value {
+    font-family: var(--font-display);
+    font-size: 1.9rem;
+    color: var(--ink);
+    line-height: 1.05;
+    margin-top: 0.25rem;
+}
+
+.stat-card__sub {
+    font-size: 0.78rem;
+    color: var(--ink-faint);
+    margin-top: 0.1rem;
+}
+
+/* ------------------------------------------------------------------ */
+/* Empty State                                                          */
+/* ------------------------------------------------------------------ */
+
+.empty-state {
+    background: var(--paper-card);
+    border: 1px dashed var(--border);
+    border-radius: var(--radius-md);
+    padding: 3.5rem 2rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.empty-state__icon {
+    width: 40px;
+    height: 40px;
+    color: var(--accent-light);
+    margin-bottom: 0.5rem;
+}
+
+.empty-state__title {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    color: var(--ink);
+    font-weight: 400;
+}
+
+.empty-state__body {
+    font-size: 0.9rem;
+    color: var(--ink-muted);
+    max-width: 300px;
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
+}
+
+/* ------------------------------------------------------------------ */
+/* Quick Actions                                                        */
+/* ------------------------------------------------------------------ */
+
+.quick-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+/* ------------------------------------------------------------------ */
+/* Responsive — 900px (tablet)                                          */
+/* ------------------------------------------------------------------ */
+
+@media (max-width: 900px) {
+    .stat-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ------------------------------------------------------------------ */
+/* Responsive — 600px (mobile)                                          */
+/* ------------------------------------------------------------------ */
+
+@media (max-width: 600px) {
+    .profile-page {
+        padding: 2rem 1rem 4rem;
+        gap: 2rem;
+    }
+
+    .stat-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .account-card__row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.2rem;
+        padding: 0.875rem 1.25rem;
+    }
+
+    .account-card__value {
+        font-size: 0.9rem;
+        color: var(--ink-soft);
+    }
+
+    .quick-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .quick-actions .btn-primary,
+    .quick-actions .btn-ghost {
+        text-align: center;
+        width: 100%;
+    }
+}

@@ -1,6 +1,7 @@
 # pyrefly: ignore [missing-import]
 from flask import Flask, render_template, request, redirect, url_for, session
 from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import datetime
 from database.db import get_db, init_db, seed_db
 
 app = Flask(__name__)
@@ -110,7 +111,70 @@ def logout():
 
 @app.route("/profile")
 def profile():
-    return "Profile page — coming in Step 4"
+    # Auth guard — must be the very first check
+    if not session.get("user_id"):
+        return redirect(url_for("login"))
+
+    user_id = session["user_id"]
+    conn = get_db()
+    try:
+        # 1. Fetch user record (safe columns only — no password_hash exposed)
+        user_row = conn.execute(
+            "SELECT id, name, email, created_at FROM users WHERE id = ?",
+            (user_id,)
+        ).fetchone()
+
+        # 2. Total amount spent in the current calendar month
+        month_row = conn.execute(
+            """SELECT COALESCE(SUM(amount), 0) AS month_total
+               FROM expenses
+               WHERE user_id = ?
+                 AND strftime('%Y-%m', date) = strftime('%Y-%m', 'now')""",
+            (user_id,)
+        ).fetchone()
+
+        # 3. All-time expense count
+        count_row = conn.execute(
+            "SELECT COUNT(*) AS total_count FROM expenses WHERE user_id = ?",
+            (user_id,)
+        ).fetchone()
+
+        # 4. Top spending category (all time)
+        top_row = conn.execute(
+            """SELECT category, SUM(amount) AS cat_total
+               FROM expenses
+               WHERE user_id = ?
+               GROUP BY category
+               ORDER BY cat_total DESC
+               LIMIT 1""",
+            (user_id,)
+        ).fetchone()
+    finally:
+        conn.close()
+
+    # Format created_at: "YYYY-MM-DD HH:MM:SS" → "26 Jul 2026"
+    # Using %d (zero-padded) for cross-platform safety on Windows
+    raw_date = user_row["created_at"] or ""
+    try:
+        member_since = datetime.strptime(
+            raw_date[:10], "%Y-%m-%d"
+        ).strftime("%d %b %Y")
+    except (ValueError, TypeError):
+        member_since = raw_date
+
+    # Build safe context dicts — password_hash is never included
+    user = {
+        "name":         user_row["name"],
+        "email":        user_row["email"],
+        "member_since": member_since,
+    }
+    stats = {
+        "month_total":  month_row["month_total"],
+        "total_count":  count_row["total_count"],
+        "top_category": top_row["category"] if top_row else None,
+    }
+
+    return render_template("profile.html", user=user, stats=stats)
 
 
 @app.route("/expenses/add")
